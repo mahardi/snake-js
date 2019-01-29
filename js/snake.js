@@ -17,7 +17,6 @@ class Snake{
             head.y += this.ydir;
             this.body.push(head);
         }
-        console.log("updating");
     }
 
     move(){

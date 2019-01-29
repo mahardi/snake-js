@@ -1,11 +1,11 @@
 class GameEvent{
     constructor(){
-        this.tempLen = 0;
+        this.showElement;
     }
 
     isOver(){
         snake.setDir(0,0);
-        let showElement = document.getElementsByClassName("stat");
+        this.showElement = document.getElementsByClassName("stat");
         for(let i = 0; i< showElement.length;i++){
             showElement[i].style.display = "block";
         }
@@ -15,7 +15,7 @@ class GameEvent{
 
     isPausing(){
         snake.setDir(0,0);
-        let showElement = document.getElementsByClassName("stat");
+        this.showElement = document.getElementsByClassName("stat");
         for(let i = 0; i< showElement.length;i++){
             showElement[i].style.display = "block";
         }
@@ -24,7 +24,7 @@ class GameEvent{
 
     isUnpausing(x,y){
         snake.setDir(x,y);
-        let showElement = document.getElementsByClassName("stat");
+        this.showElement = document.getElementsByClassName("stat");
         for(let i = 0; i< showElement.length;i++){
             showElement[i].style.display = "none";
         }
