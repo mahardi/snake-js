@@ -1,22 +1,26 @@
 let snake;
-let res = 20;
+let game;
+let res = 10;
+let x = 0;
+let y = 0;
+let speed = 7;
 let w;
 let h;
 let isPaused = false;
 let isStarted = false;
 let isGameOver = false;
-let x = 0;
-let y = 0;
+let isLevelUp = false;
 let dir;
+let canvas;
 
 function setup() {
-    createCanvas(400,400);
-    snake = new Snake();
-    event = new GameEvent();
-
+    canvas = createCanvas(400,400);
+    canvas.parent("canvas");
     w = floor(width/res);
     h = floor(height/res);
-    frameRate(5);
+
+    snake = new Snake();
+    game = new GameEvent();
 
     foodLocation();
 }
@@ -24,23 +28,16 @@ function setup() {
 function draw() {
     scale(res);
     background(220);
-    
+    frameRate(speed);
+
     snake.update(isPaused, isGameOver);
     snake.show();
     
     checkIsGameOver();
     checkFood();
     foodDraw();
-
-    if(isPaused){
-        snake.doNothing();
-    }
-
 }
 
-function gameIsOver(){
-
-}
 
 function foodLocation(){
     let x = floor(random(w));
@@ -48,8 +45,6 @@ function foodLocation(){
     let isBodyPresent;
 
     isBodyPresent = snake.checkBody(x, y);
-    console.log(isBodyPresent);
-
     if(x == 0 || y == 0 || x > w-2 ||  y > h-2 ){
         foodLocation();
     }else if(isBodyPresent){
@@ -64,8 +59,11 @@ function foodDraw(){
     rect(food.x, food.y, 1, 1);
 }
 
+
 function checkIsStarted(){
-    isStarted = true;
+    if(game.isStarting()){
+        isStarted = true;
+    }
 }
 
 function checkFood(){
@@ -76,19 +74,17 @@ function checkFood(){
 
 function checkIsGameOver(){
     if (snake.gameOver()){
+        game.isOver();
         isGameOver = true;
-        event.gameIsOver();
     }
 }
 
 function checkIsPaused(){
     if(!snake.pause(isPaused)){
-        snake.setDir(0, 0);
-        document.getElementById("status").innerHTML= "PAUSED";
+        game.isPausing();
         isPaused = true;
     }else if(snake.pause(isPaused)){
-        snake.setDir(x, y);
-        document.getElementById("status").innerHTML= "</br>";
+        game.isUnpausing(x, y);
         isPaused = false;
     }
 }
@@ -98,38 +94,43 @@ function keyPressed(){
         if(key == " " && isStarted){
              checkIsPaused();
         }else if(!isPaused){
-            if(keyCode === DOWN_ARROW){
-                if(dir == "up"){
-                    snake.doNothing();
-                }else{
-                    dir = "down";
-                    setSnakeDirection(dir);
-                    checkIsStarted();
-                }
-            }else if(keyCode === UP_ARROW){
-                if(dir == "down"){
-                    snake.doNothing();
-                }else{
-                    dir = "up";
-                    setSnakeDirection(dir);
-                    checkIsStarted();
-                }
-            }else if(keyCode === RIGHT_ARROW){
-                if(dir == "left"){
-                    snake.doNothing();
-                }else{
-                    dir = "right";
-                    setSnakeDirection(dir);
-                    checkIsStarted();
-                }
-            }else if(keyCode === LEFT_ARROW){
-                if (dir == "right"){
-                    snake.doNothing();
-                }else{
-                    dir = "left";
-                    setSnakeDirection(dir);
-                    checkIsStarted();
-                }
+            switch(keyCode){
+                case DOWN_ARROW:
+                    if(dir == "up"){
+                        snake.doNothing();
+                    }else{
+                        dir = "down";
+                        setSnakeDirection(dir);
+                        checkIsStarted();
+                    }
+                    break;
+                case UP_ARROW:
+                    if(dir == "down"){
+                        snake.doNothing();
+                    }else{
+                        dir = "up";
+                        setSnakeDirection(dir);
+                        checkIsStarted();
+                    }
+                    break;
+                case RIGHT_ARROW:
+                    if(dir == "left"){
+                        snake.doNothing();
+                    }else{
+                        dir = "right";
+                        setSnakeDirection(dir);
+                        checkIsStarted();
+                    }
+                    break;
+                case LEFT_ARROW:
+                    if (dir == "right"){
+                        snake.doNothing();
+                    }else{
+                        dir = "left";
+                        setSnakeDirection(dir);
+                        checkIsStarted();
+                    }
+                    break;
             }
         }
     }
@@ -154,7 +155,6 @@ function setSnakeDirection(dir){
             y = 0;
             break;
     }
-    console.log(dir);
     snake.setDir(x, y);
     
 }

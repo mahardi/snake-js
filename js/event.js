@@ -1,19 +1,42 @@
 class GameEvent{
     constructor(){
-        this.isStarted = false;
-        this.isGameOver = false;
+        this.tempLen = 0;
     }
 
-    gameIsOver(){
-        snake = new Snake;
-        
+    isOver(){
+        snake.setDir(0,0);
+        let showElement = document.getElementsByClassName("stat");
+        for(let i = 0; i< showElement.length;i++){
+            showElement[i].style.display = "block";
+        }
+        document.getElementById("status").innerHTML= "<b>Too bad :'(</b></br>Refresh browser</br>to restart.";
+        document.getElementById("score").innerHTML= "Your score is "+snake.len;
     }
 
-    gameIsPausing(){
-
+    isPausing(){
+        snake.setDir(0,0);
+        let showElement = document.getElementsByClassName("stat");
+        for(let i = 0; i< showElement.length;i++){
+            showElement[i].style.display = "block";
+        }
+        document.getElementById("status").innerHTML= "The game is</br>paused,</br>take your time</br>:D";
     }
 
-    gameIsUnpausing(){
-
+    isUnpausing(x,y){
+        snake.setDir(x,y);
+        let showElement = document.getElementsByClassName("stat");
+        for(let i = 0; i< showElement.length;i++){
+            showElement[i].style.display = "none";
+        }
+        document.getElementById("status").innerHTML= "</br>";
     }
+
+    isStarting(){
+        if(snake.move()){
+            return true
+        }else{
+            return false
+        }
+    }
+
 }

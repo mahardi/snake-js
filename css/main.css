@@ -6,24 +6,54 @@ html, body{
 body{
     margin: 0;
     background-color: black;
-    display: flex;
+    display: -webkit-flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: right;
 }
 
 .description{
-    padding: 40px;
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 24px;
-    text-align: center;
+    margin: 60px;
+    display: block;
+    position: absolute;
+    right:0;
+    bottom:0;
 }
 
-#title{
+.stat{
+    font-size: 26px;
+    margin: 60px;
+    display: none;
+    position: fixed;
+    left:0;
+    top:0;
+    text-align: left;
+}
+
+.about{
+    font-size: 12x;
+    margin: 44px;
+    display :block;
+    position: fixed;
+    left:0;
+    bottom:0;
+    text-align: left;
+}
+
+#title {
     color: white;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 50px;
-    text-align: center;
+    text-align: right;
 }
+
+#desc{
+    font-size: 24px;
+}
+
+
+
 

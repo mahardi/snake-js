@@ -6,6 +6,7 @@ class Snake{
         this.xdir = 0;
         this.ydir = 0;
         this.len = 0;
+        this.tempLen = 0;
     }
 
     update(isPaused, isGameOver){
@@ -16,7 +17,13 @@ class Snake{
             head.y += this.ydir;
             this.body.push(head);
         }
-        document.getElementById("score").innerHTML= "SCORE : "+this.len;
+        console.log("updating");
+    }
+
+    move(){
+        if(this.xdir != 0 || this.ydir != 0){
+            return true;
+        }
     }
 
     show(){
@@ -55,7 +62,6 @@ class Snake{
         let y = this.body[this.body.length-1].y;
         if(x < 0 || x > w-1 || y < 0 || y > h-1){
             return true;
-            
         }
         for (let i = 0; i < this.body.length-1; i++){
             let part = this.body[i];
@@ -64,6 +70,11 @@ class Snake{
             }
         }
         return false;
+    }
+
+    getLength(){
+        this.tempLen = this.len;
+        return this.tempLen;
     }
 
     eat(pos){
@@ -77,7 +88,7 @@ class Snake{
     }
 
     doNothing(){
-        console.log("end");
+        //Do nothing
     }
 
     endGame(){
