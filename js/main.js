@@ -11,11 +11,13 @@ let isStarted = false;
 let isGameOver = false;
 let dir;
 let canvas;
+let dim;
 
 
 function setup() {
     // Set the background canvas
-    canvas = createCanvas(400,400);
+    dim = 400;
+    canvas = createCanvas(dim, dim);
     canvas.parent("canvas");
 
     //Set initial canvas dimension
