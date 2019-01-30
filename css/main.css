@@ -1,6 +1,5 @@
 html, body{
     height: 100%;
-    min-width: 1000px;
 }
 
 body{
@@ -9,10 +8,19 @@ body{
     display: -webkit-flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
     color: white;
     font-family: Arial, Helvetica, sans-serif;
     text-align: right;
+}
+
+#canvas{
+    width: 400px;
+    height: 400px;
+    position: fixed;
+    top : 50%;
+    left: 50%;
+    margin-left: -200px;
+    margin-top: -200px;
 }
 
 .description{
