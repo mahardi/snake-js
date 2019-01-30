@@ -9,8 +9,8 @@ class GameEvent{
         
         //Show Stats
         this.showElement = document.getElementsByClassName("stat");
-        for(let i = 0; i< showElement.length;i++){
-            showElement[i].style.display = "block";
+        for(let i = 0; i< this.showElement.length;i++){
+            this.showElement[i].style.display = "block";
         }
 
         //Print game over text and total score on Stats
@@ -24,8 +24,8 @@ class GameEvent{
 
         //Show Stats 
         this.showElement = document.getElementsByClassName("stat");
-        for(let i = 0; i< showElement.length;i++){
-            showElement[i].style.display = "block";
+        for(let i = 0; i< this.showElement.length;i++){
+            this.showElement[i].style.display = "block";
         }
 
         //Print paused menu text on Stats
@@ -38,8 +38,8 @@ class GameEvent{
 
         //Hide Stats
         this.showElement = document.getElementsByClassName("stat");
-        for(let i = 0; i< showElement.length;i++){
-            showElement[i].style.display = "none";
+        for(let i = 0; i< this.showElement.length;i++){
+            this.showElement[i].style.display = "none";
         }
     }
 

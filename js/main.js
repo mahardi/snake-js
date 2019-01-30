@@ -9,7 +9,6 @@ let h;
 let isPaused = false;
 let isStarted = false;
 let isGameOver = false;
-let isLevelUp = false;
 let dir;
 let canvas;
 
@@ -46,6 +45,8 @@ function draw() {
     //Check if food is still exist in canvas and draw food
     checkFood();
     foodDraw();
+
+    console.log(isPaused, isGameOver);
 }
 
 
