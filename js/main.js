@@ -13,38 +13,52 @@ let isLevelUp = false;
 let dir;
 let canvas;
 
+
 function setup() {
+    // Set the background canvas
     canvas = createCanvas(400,400);
     canvas.parent("canvas");
+
+    //Set initial canvas dimension
     w = floor(width/res);
     h = floor(height/res);
 
     snake = new Snake();
     game = new GameEvent();
 
+    //Draw first food
     foodLocation();
 }
 
 function draw() {
+    //Draw the Snake elements and set the Snake's speed
     scale(res);
     background(220);
     frameRate(speed);
 
+    //Update and draw the Snake elements
     snake.update(isPaused, isGameOver);
     snake.show();
     
+    //Check if game is over or not
     checkIsGameOver();
+
+    //Check if food is still exist in canvas and draw food
     checkFood();
     foodDraw();
 }
 
 
 function foodLocation(){
+    //Randomize food coordinate (x,y)
     let x = floor(random(w));
     let y = floor(random(h));
-    let isBodyPresent;
 
-    isBodyPresent = snake.checkBody(x, y);
+    //Check if food location overriding Snake's body
+    let isBodyPresent = snake.checkBody(x, y);
+
+    //Create food vector if (x, y) in canvas range and not
+    //overridning Snake's body
     if(x == 0 || y == 0 || x > w-2 ||  y > h-2 ){
         foodLocation();
     }else if(isBodyPresent){
@@ -90,14 +104,14 @@ function checkIsPaused(){
 }
 
 function keyPressed(){
-    if(!snake.gameOver()){
-        if(key == " " && isStarted){
-             checkIsPaused();
+    if(!snake.gameOver()){                      //Check if game is over or not and
+        if(key == " " && isStarted){            //if game is paused or not when
+             checkIsPaused();                   //function keyPressed() executed
         }else if(!isPaused){
             switch(keyCode){
                 case DOWN_ARROW:
-                    if(dir == "up"){
-                        snake.doNothing();
+                    if(dir == "up"){            //Check if current direction
+                        snake.doNothing();      //is opposite with previous direction
                     }else{
                         dir = "down";
                         setSnakeDirection(dir);
@@ -155,8 +169,8 @@ function setSnakeDirection(dir){
             y = 0;
             break;
     }
+    //Set Snake direction
     snake.setDir(x, y);
-    
 }
 
 
