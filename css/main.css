@@ -23,7 +23,7 @@ body{
     bottom:0;
 }
 
-.stat{
+.body > .stat{
     font-size: 26px;
     margin: 60px;
     display: none;
@@ -33,7 +33,7 @@ body{
     text-align: left;
 }
 
-.about{
+.body > .about{
     font-size: 12x;
     margin: 44px;
     display :block;
