@@ -1,6 +1,6 @@
 let snake;
 let game;
-let res = 10;
+let res = 20;
 let x = 0;
 let y = 0;
 let speed = 7;
