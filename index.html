@@ -78,6 +78,12 @@
         }
        
         if(detectmob()){
+            document.getElementById("canvas").addEventListener("click", function(){
+                openFullscreen();
+                dir = "up";
+                setSnakeDirection(dir);
+            });
+
             let header = document.getElementsByClassName("header");
             for(let i = 0; i< header.length;i++){
                 header[i].style.display = "block";
@@ -86,9 +92,7 @@
             document.getElementById("right-footer-bottom").style.display = "none";
             document.getElementById("left-footer").style.display = "none";
             
-            document.getElementById("canvas").addEventListener("click", function(){
-                openFullscreen();
-            });
+
         }
 
 </script>
