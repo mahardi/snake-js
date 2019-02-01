@@ -12,7 +12,12 @@ let isGameOver = false;
 let dir;
 let canvas;
 let dim;
+let xDown = null;                                                        
+let yDown = null;
 
+
+document.addEventListener('touchstart', handleTouchStart, false);        
+document.addEventListener('touchmove', handleTouchMove, false);
 
 function setup() {
     // Set the background canvas
@@ -110,7 +115,7 @@ function keyPressed(){
     if(!snake.gameOver()){                      //Check if game is over or not and
         if(key == " " && isStarted){            //if game is paused or not when
              checkIsPaused();                   //function keyPressed() executed
-        }else if(!isPaused){
+        }else if(!isPaused && !detectmob()){
             switch(keyCode){
                 case DOWN_ARROW:
                     if(dir == "up"){            //Check if current direction
@@ -153,6 +158,65 @@ function keyPressed(){
     }
 }
 
+function getTouches(evt) {
+    return evt.touches || evt.originalEvent.touches;
+}                                                     
+
+function handleTouchStart(evt) {
+    const firstTouch = getTouches(evt)[0];                                      
+    xDown = firstTouch.clientX;                                      
+    yDown = firstTouch.clientY;                                      
+};                                                
+
+function handleTouchMove(evt) {
+    if ( ! xDown || ! yDown ) {
+        return;
+    }
+
+    let xUp = evt.touches[0].clientX;                                    
+    let yUp = evt.touches[0].clientY;
+
+    let xDiff = xDown - xUp;
+    var yDiff = yDown - yUp;
+
+    if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
+        if ( xDiff > 0 ) {
+            if(dir == "right"){           
+                snake.doNothing();      
+            }else{
+                dir = "left";
+                setSnakeDirection(dir);
+            }
+        } else {
+            if(dir == "left"){           
+                snake.doNothing();      
+            }else{
+                dir = "right";
+                setSnakeDirection(dir);
+            }
+        }                       
+    } else {
+        if ( yDiff > 0 ) {
+            if(dir == "down"){           
+                snake.doNothing();      
+            }else{
+                dir = "up";
+                setSnakeDirection(dir);
+            }
+        } else { 
+            if(dir == "up"){           
+                snake.doNothing();      
+            }else{
+                dir = "down";
+                setSnakeDirection(dir);
+            }
+        }                                                                 
+    }
+
+    xDown = null;
+    yDown = null;                                             
+};
+
 function setSnakeDirection(dir){
     switch(dir){
         case "down":
@@ -174,10 +238,5 @@ function setSnakeDirection(dir){
     }
     //Set Snake direction
     snake.setDir(x, y);
+    checkIsStarted();
 }
-
-
-
-
-
-
