@@ -23,7 +23,27 @@ body{
     margin-top: -200px;
 }
 
-.description{
+.header{
+    width: 100%;
+    margin: 60px;
+    display: none;
+    position: relative;
+}
+
+.header > #left-header-top{
+    margin:60px;
+    font-size: 26px;
+}
+
+.header > #score{
+    margin:60px;
+    font-size: 34px;
+    position: fixed;
+    top:0;
+    left:0;
+}
+
+.footer{
     margin: 60px;
     display: block;
     position: absolute;
@@ -31,35 +51,26 @@ body{
     bottom:0;
 }
 
-.stat{
-    font-size: 26px;
-    margin: 60px;
-    display: none;
-    position: fixed;
-    left:0;
-    top:0;
-    text-align: left;
-}
-
-.about{
+#left-footer{
     font-size: 12x;
     margin: 44px;
-    display :block;
     position: fixed;
     left:0;
     bottom:0;
     text-align: left;
+    display: block;
 }
 
-#title {
+#right-footer-top {
     color: white;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 50px;
     text-align: right;
 }
 
-#desc{
+#right-footer-bottom{
     font-size: 24px;
+    display: block;
 }
 
 
