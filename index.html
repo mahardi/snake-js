@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
     <script src="js/p5.min.js"></script>
-    <script src="/addons/p5.dom.min.js"></script>
+    <script src="addons/p5.dom.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/snake.js"></script>
     <script src="js/event.js"></script>
@@ -78,6 +78,12 @@
         }
        
         if(detectmob()){
+            document.getElementById("canvas").addEventListener("click", function(){
+                openFullscreen();
+                dir = "up";
+                setSnakeDirection(dir);
+            });
+
             let header = document.getElementsByClassName("header");
             for(let i = 0; i< header.length;i++){
                 header[i].style.display = "block";
@@ -86,9 +92,7 @@
             document.getElementById("right-footer-bottom").style.display = "none";
             document.getElementById("left-footer").style.display = "none";
             
-            document.getElementById("canvas").addEventListener("click", function(){
-                openFullscreen();
-            });
+
         }
 
 </script>
