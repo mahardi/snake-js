@@ -1,7 +1,10 @@
 # Snake.js
 
-A simple Snake game made with p5.js and can only be played on desktop browser. Inspired by [this](https://www.youtube.com/watch?v=AaGK-fj-BAM) coding challenge.
+A simple Snake game made with p5.js, can played on desktop or mobile browser. Inspired by [this](https://www.youtube.com/watch?v=AaGK-fj-BAM) coding challenge.
 
 ### Controls:
-* Up, down left and right arrow to control the Snake.
-* Space to pause the game. 
+* Desktop :
+    * Up, down, left and right arrow to control the Snake.
+    * Space to pause the game. 
+* Mobile :
+    * Swipe up, down, left and right on screen to control the Snake.
