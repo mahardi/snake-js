@@ -24,6 +24,7 @@ function setup() {
     dim = 400;
     canvas = createCanvas(dim, dim);
     canvas.parent("canvas");
+    
 
     //Set initial canvas dimension
     w = floor(width/res);
@@ -53,9 +54,10 @@ function draw() {
     checkFood();
     foodDraw();
 
-    console.log(isPaused, isGameOver);
+    // if(detectmob()){
+    //     document.getElementById("score").innerHTML= snake.len;
+    // }
 }
-
 
 function foodLocation(){
     //Randomize food coordinate (x,y)
