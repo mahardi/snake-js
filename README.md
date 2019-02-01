@@ -4,7 +4,7 @@ A simple Snake game made with p5.js, can played on desktop or mobile browser. In
 
 ### Controls:
 * Desktop :
-    * Up, down, left and right arrow to control the Snake.
-    * Space to pause the game. 
+   * Up, down, left and right arrow to control the Snake.
+   * Space to pause the game. 
 * Mobile :
-    * Swipe up, down, left and right on screen to control the Snake.
+   * Swipe up, down, left and right on screen to control the Snake.
