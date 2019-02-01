@@ -57,6 +57,8 @@ function draw() {
     // if(detectmob()){
     //     document.getElementById("score").innerHTML= snake.len;
     // }
+
+
 }
 
 function foodLocation(){
@@ -170,49 +172,51 @@ function handleTouchStart(evt) {
     yDown = firstTouch.clientY;                                      
 };                                                
 
-function handleTouchMove(evt) {
-    if ( ! xDown || ! yDown ) {
-        return;
-    }
-
-    let xUp = evt.touches[0].clientX;                                    
-    let yUp = evt.touches[0].clientY;
-
-    let xDiff = xDown - xUp;
-    var yDiff = yDown - yUp;
-
-    if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
-        if ( xDiff > 0 ) {
-            if(dir == "right"){           
-                snake.doNothing();      
-            }else{
-                dir = "left";
-                setSnakeDirection(dir);
-            }
+function handleTouchMove(evt){
+    if(document.fullscreen){
+        if ( ! xDown || ! yDown ) {
+            return;
+        }
+    
+        let xUp = evt.touches[0].clientX;                                    
+        let yUp = evt.touches[0].clientY;
+    
+        let xDiff = xDown - xUp;
+        var yDiff = yDown - yUp;
+    
+        if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
+            if ( xDiff > 0 ) {
+                if(dir == "right"){           
+                    snake.doNothing();      
+                }else{
+                    dir = "left";
+                    setSnakeDirection(dir);
+                }
+            } else {
+                if(dir == "left"){           
+                    snake.doNothing();      
+                }else{
+                    dir = "right";
+                    setSnakeDirection(dir);
+                }
+            }                       
         } else {
-            if(dir == "left"){           
-                snake.doNothing();      
-            }else{
-                dir = "right";
-                setSnakeDirection(dir);
-            }
-        }                       
-    } else {
-        if ( yDiff > 0 ) {
-            if(dir == "down"){           
-                snake.doNothing();      
-            }else{
-                dir = "up";
-                setSnakeDirection(dir);
-            }
-        } else { 
-            if(dir == "up"){           
-                snake.doNothing();      
-            }else{
-                dir = "down";
-                setSnakeDirection(dir);
-            }
-        }                                                                 
+            if ( yDiff > 0 ) {
+                if(dir == "down"){           
+                    snake.doNothing();      
+                }else{
+                    dir = "up";
+                    setSnakeDirection(dir);
+                }
+            } else { 
+                if(dir == "up"){           
+                    snake.doNothing();      
+                }else{
+                    dir = "down";
+                    setSnakeDirection(dir);
+                }
+            }                                                                 
+        }
     }
 
     xDown = null;
