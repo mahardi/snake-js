@@ -45,9 +45,9 @@ class GameEvent{
 
     isStarting(){
         if(snake.move()){
-            return true
+            return true;
         }else{
-            return false
+            return false;
         }
     }
 }
