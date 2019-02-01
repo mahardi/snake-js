@@ -18,26 +18,26 @@
         <div id="canvas"></div>
     </section>
 
-    <section class="description">
-        <div id="title">Snake.js</div>
-        <div id="desc">
+    <section class="header">
+            <div id="left-header-top"></div>
+            <div id="score"></div>
+        </section>
+    
+    <section class="footer">
+        <div id="right-footer-top">snake-js</div>
+        <div id="right-footer-bottom">
             A simple Snake</br>
             game made with</br>
             p5.js library</br>
         </div>
+        <div id="left-footer">github.com/mahardi</div>
     </section>
 
-    <section class="stat">
-        <div id="status"></div>
-        <div id="score"></div>
-    </section>
- 
-    <section class="about">
-        <div id="github">github.com/mahardi</div>
-    </section>
 
-    <script>
-        function detectmob() { 
+<script>
+        var elem = document.documentElement;
+
+        function detectmob(){ 
             if( navigator.userAgent.match(/Android/i)
             || navigator.userAgent.match(/webOS/i)
             || navigator.userAgent.match(/iPhone/i)
@@ -52,7 +52,46 @@
                 return false;
             }
         }
-    </script>
+
+        function openFullscreen(){
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.mozRequestFullScreen) { 
+                elem.mozRequestFullScreen();
+            } else if (elem.webkitRequestFullscreen) { 
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) { 
+                elem.msRequestFullscreen();
+            }
+        }
+
+        function closeFullscreen(){
+          if (document.exitFullscreen) {
+            document.exitFullscreen();
+          } else if (document.mozCancelFullScreen) { 
+            document.mozCancelFullScreen();
+          } else if (document.webkitExitFullscreen) { 
+            document.webkitExitFullscreen();
+          } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+          }
+        }
+       
+        if(detectmob()){
+            let header = document.getElementsByClassName("header");
+            for(let i = 0; i< header.length;i++){
+                header[i].style.display = "block";
+            }
+
+            document.getElementById("right-footer-bottom").style.display = "none";
+            document.getElementById("left-footer").style.display = "none";
+            
+            document.getElementById("canvas").addEventListener("click", function(){
+                openFullscreen();
+            });
+        }
+
+</script>
     
 </body>
 </html>
