@@ -47,6 +47,17 @@ class Snake{
         }
     }
 
+
+    checkHead(){
+        let head = this.body[this.body.length-1].copy();
+        if(head.x == (this.body[this.body.length-1].x+this.xdir)
+            || head.y == (this.body[this.body.length-1].y+this.ydir)){
+                return true;
+            }else{
+                return false;
+            }
+    }
+
     grow(){
         //Add length every time Snake grows
         this.len++;

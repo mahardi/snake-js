@@ -5,7 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Snake</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+    
     <script src="js/p5.min.js"></script>
     <script src="addons/p5.dom.min.js"></script>
     <script src="js/main.js"></script>
@@ -14,23 +16,23 @@
 </head>
 <body>
 
+
+
     <section class="canvas">
         <div id="canvas"></div>
     </section>
 
+    <div id="stats">
+    </div>
+
     <section class="header">
-            <div id="left-header-top"></div>
-            <div id="score"></div>
-        </section>
+        <div id="score"></div>
+    </section>
     
+
     <section class="footer">
-        <div id="right-footer-top">snake-js</div>
-        <div id="right-footer-bottom">
-            A simple Snake</br>
-            game made with</br>
-            p5.js library</br>
-        </div>
-        <div id="left-footer">github.com/mahardi</div>
+        <div id="title">snake-js</div>
+        <div id="github-link">github.com/mahardi</div>
     </section>
 
 
@@ -88,10 +90,6 @@
             for(let i = 0; i< header.length;i++){
                 header[i].style.display = "block";
             }
-
-            document.getElementById("right-footer-top").style.display = "none";
-            document.getElementById("right-footer-bottom").style.display = "none";
-            document.getElementById("left-footer").style.display = "none";
         }
 
 </script>

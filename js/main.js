@@ -14,6 +14,7 @@ let canvas;
 let dim;
 let xDown = null;                                                        
 let yDown = null;
+let turnt;
 
 
 document.addEventListener('touchstart', handleTouchStart, false);        
@@ -21,14 +22,13 @@ document.addEventListener('touchmove', handleTouchMove, false);
 
 function setup() {
     // Set the background canvas
-    dim = 400;
+    dim = document.getElementById("canvas").clientWidth;
     canvas = createCanvas(dim, dim);
     canvas.parent("canvas");
     
-
     //Set initial canvas dimension
-    w = floor(width/res);
-    h = floor(height/res);
+    w = floor(dim/res);
+    h = floor(dim/res);
 
     snake = new Snake();
     game = new GameEvent();
@@ -48,7 +48,7 @@ function draw() {
     snake.show();
     
     //Check if game is over or not
-    checkIsGameOver();
+    isGameOver = checkIsGameOver();
 
     //Check if food is still exist in canvas and draw food
     checkFood();
@@ -57,8 +57,6 @@ function draw() {
     // if(detectmob()){
     //     document.getElementById("score").innerHTML= snake.len;
     // }
-
-
 }
 
 function foodLocation(){
@@ -85,6 +83,11 @@ function foodDraw(){
     rect(food.x, food.y, 1, 1);
 }
 
+function checkFood(){
+    if(snake.eat(food)){
+        foodLocation();
+    }
+}
 
 function checkIsStarted(){
     if(game.isStarting()){
@@ -92,33 +95,31 @@ function checkIsStarted(){
     }
 }
 
-function checkFood(){
-    if(snake.eat(food)){
-        foodLocation();
-    }
-}
-
 function checkIsGameOver(){
     if (snake.gameOver()){
         game.isOver();
-        isGameOver = true;
+        return true
+    }else{
+        return false;
     }
 }
 
 function checkIsPaused(){
     if(!snake.pause(isPaused)){
         game.isPausing();
-        isPaused = true;
-    }else if(snake.pause(isPaused)){
+        return true;
+    }else{
         game.isUnpausing(x, y);
-        isPaused = false;
+        return false;
     }
 }
 
+
 function keyPressed(){
+    console.log(snake.checkHead(x,y)); 
     if(!snake.gameOver()){                      //Check if game is over or not and
         if(key == " " && isStarted){            //if game is paused or not when
-             checkIsPaused();                   //function keyPressed() executed
+             isPaused = checkIsPaused();        //function keyPressed() executed
         }else if(!isPaused && !detectmob()){
             switch(keyCode){
                 case DOWN_ARROW:
