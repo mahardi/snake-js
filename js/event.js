@@ -16,7 +16,7 @@ class GameEvent{
                 this.showElement[i].style.display = "block";
             }
             //Print game over text and total score on Stats
-            document.getElementById("stats").innerHTML= "Too bad :'(</br>Refresh browser</br>to restart.";
+            document.getElementById("stats").innerHTML= ":'(</br>Refresh browser</br>to restart.";
             document.getElementById("score").innerHTML= "Your score is "+snake.len;
         }
     }
@@ -28,7 +28,7 @@ class GameEvent{
 
         }else{
             //Print paused menu text on Stats
-            document.getElementById("stats").innerHTML= "The game is</br>paused,</br>take your time</br>:D";
+            document.getElementById("stats").innerHTML= "PAUSED</br>Take your time :D";
         }
     }
 
